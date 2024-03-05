@@ -58,6 +58,10 @@ public class RequestsRouter {
         if (Objects.isNull(request)) {
             throw new CloudSDKException(CloudSDKErrorEnum.INVALID_PARAMETER, "The return value cannot be null.");
         }
+        //이지스 : flighttask_resource_get 무시
+        else if(request.getMethod().equals("flighttask_resource_get")) {
+            throw new CloudSDKException(CloudSDKErrorEnum.UNKNOWN, "method(flighttask_resource_get) cannot be used.");
+        }
         gatewayPublish.publishReply(request, headers);
         return request;
     }
